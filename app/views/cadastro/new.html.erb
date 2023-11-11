@@ -28,10 +28,10 @@
                 </div>
 
                 <div>
-                    <%= form_usuario.label :password %><br>
+                    <%= form_usuario.label :password, "Senha" %><br>
                     <%= form_usuario.text_field :password %>
                 </div><div>
-                    <%= form_usuario.label :password_confirmation %><br>
+                    <%= form_usuario.label :password_confirmation, "Confirmação da Senha"%><br>
                     <%= form_usuario.text_field :password_confirmation %>
                 </div>
             <% end %>
@@ -40,7 +40,7 @@
                 <%= form_aluno.text_field :curso %>
             </div>
             <br>
-            <%= form_aluno.submit%>
+            <%= form_aluno.submit "Cadastrar"%>
         <% end %>
     </div>
     <div id="professor">
@@ -69,11 +69,11 @@
                 </div>
         
                 <div>
-                    <%= form_usuario.label :password %><br>
+                    <%= form_usuario.label :password ,"Senha"%><br>
                     <%= form_usuario.text_field :password %>
                 </div>
                 <div>
-                    <%= form_usuario.label :password_confirmation %><br>
+                    <%= form_usuario.label :password_confirmation ,"Confirmação da Senha"%><br>
                     <%= form_usuario.text_field :password_confirmation %>
                 </div>
             <% end %>
@@ -82,7 +82,7 @@
                 <%= form_professor.text_field :centro %>
             </div>
             <br>
-            <%= form_professor.submit%>
+            <%= form_professor.submit "Cadastrar" %>
         <% end %>
     </div>
  </div>
@@ -95,15 +95,20 @@
     const professor = document.querySelector("#professor")
     console.log("teste")
     btnAluno.addEventListener("click",()=>{
-        aluno.style.display = "flex"
-        btnAluno.classList.toggle("selecionada")
-        professor.style.display = "none"
-        btnProfessor.classList.toggle("selecionada")
+        if (!(btnAluno.classList[0] == "selecionada")){
+            aluno.style.display = "flex"
+            btnAluno.classList.toggle("selecionada")
+            professor.style.display = "none"
+            btnProfessor.classList.toggle("selecionada")
+        }
     })
     btnProfessor.addEventListener("click",()=>{
-        aluno.style.display = "none"
-        btnAluno.classList.toggle("selecionada")
-        professor.style.display = "flex"
-        btnProfessor.classList.toggle("selecionada")
+        if  (!(btnProfessor.classList[0] == "selecionada")){
+            aluno.style.display = "none"
+            btnAluno.classList.toggle("selecionada")
+            professor.style.display = "flex"
+            btnProfessor.classList.toggle("selecionada")
+        }
+        
     })
 </script>
