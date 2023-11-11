@@ -1,26 +1,39 @@
 class CadastroController < ApplicationController
-    def aluno
-        @aluno = Aluno.new
-        @aluno.usuario = Usuario.new
+    def new
+        
     end
-    def professor
-        @professor = Professor.new
-        @professor.usuario = Usuario.new
+    def create
+        case params[:tipo].downcase
+        when "aluno"
+            @aluno = Aluno.new(params_aluno)
+            @usuario = Usuario.new(params_usuario.merge({userable: @aluno}))
+            if @usuario.save && @aluno.save
+                redirect_to "/"
+            else
+                redirect_to :new
+            end
+        when "professor"
+            @professor = Professor.new(params_professor)
+            @usuario = Usuario.new(params_usuario.merge({userable: @professor}))
+            if @usuario.save && @professor.save
+                redirect_to "/"
+            else
+                redirect_to :new
+            end
+        else
+            redirect :new
+        end
     end
-    def createAluno
-        data = params[:aluno]
-        @aluno = Aluno.new(curso: data[:curso])
-        @aluno.save
-        data = params[:usuario]
-        @usuario = Usuario.new({nome: data[:nome], email: data[:email], matricula: data[:matricula],telefone: data[:telefone], senha: data[:senha], userable: @aluno})
-        @usuario.save
+
+    private
+
+    def params_usuario
+        params.require(:usuario).permit(:nome,:email,:matricula,:telefone,:password, :password_confirmation)
     end
-    def createProfessor
-        data = params[:professor]
-        @professor = Professor.new(centro: data[:centro])
-        @professor.save
-        data = params[:usuario]
-        @usuario = Usuario.new({nome: data[:nome], email: data[:email], matricula: data[:matricula],telefone: data[:telefone], senha: data[:senha], userable: @professor})
-        @usuario.save
+    def params_aluno
+        params.require(:aluno).permit(:curso)
+    end
+    def params_professor
+        params.require(:usuario).permit(:centro)
     end
 end

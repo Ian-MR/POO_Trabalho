@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
   get "/" => "home#index"
-  get "/sign_up/professor" => "cadastro#professor"
-  post "/sign_up/professor" => "cadastro#createProfessor"
-  get "/sign_up/aluno" => "cadastro#aluno"
-  post "/sign_up/aluno" => "cadastro#createAluno"
-  
+  get "/sign_up" => "cadastro#new"
+  post "/sign_up/:tipo" => "cadastro#create"
 
 end

@@ -5,7 +5,7 @@ class CreateUsuarios < ActiveRecord::Migration[7.1]
       t.string :email
       t.string :matricula
       t.string :telefone
-      t.string :senha
+      t.string :password_digest
       t.string :userable_type
       t.integer :userable_id
 

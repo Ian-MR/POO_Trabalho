@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_233844) do
     t.string "email"
     t.string "matricula"
     t.string "telefone"
-    t.string "senha"
+    t.string "password_digest"
     t.string "userable_type"
     t.integer "userable_id"
     t.datetime "created_at", null: false
