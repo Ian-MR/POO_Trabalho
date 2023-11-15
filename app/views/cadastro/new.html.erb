@@ -30,14 +30,16 @@
                 <div>
                     <%= form_usuario.label :password, "Senha" %><br>
                     <%= form_usuario.text_field :password %>
-                </div><div>
+                </div>
+
+                <div>
                     <%= form_usuario.label :password_confirmation, "Confirmação da Senha"%><br>
                     <%= form_usuario.text_field :password_confirmation %>
                 </div>
             <% end %>
             <div>
                 <%= form_aluno.label :curso %><br>
-                <%= form_aluno.text_field :curso %>
+                <%= form_aluno.text_field :curso%>
             </div>
             <br>
             <%= form_aluno.submit "Cadastrar"%>

@@ -1,0 +1,2 @@
+<h1>Hi, <%=params[:usuario].email%></h1>
+<%= link_to "Trocar senha", password_reset_edit_url(token: @token) %>

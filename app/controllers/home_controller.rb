@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-def index
-    if !Current.usuario
-        redirect_to sign_in_path
-    else
+    before_action :require_user_logged_in!
+    def index
         case  Current.usuario.userable_type
         when "Aluno"
             @msg = "Olá, "
@@ -10,5 +8,4 @@ def index
             @msg = "Bem Vindo, "
         end
     end
-end
 end

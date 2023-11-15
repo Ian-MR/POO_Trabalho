@@ -1,0 +1,13 @@
+<h1>Alterar sua senha</h1>
+<%= form_with model: @usuario,  url: password_reset_edit_path(token: params[:token]) do |form| %>
+    <div>
+        <%= form.label :password, "Nova senha" %><br>
+        <%= form.text_field :password %>
+    </div>
+    <div>
+        <%= form.label :password_confirmation, "Confirmação da Senha"%><br>
+        <%= form.text_field :password_confirmation %>
+    </div>
+    <%= form.submit "Alterar" %>
+
+<%end%>

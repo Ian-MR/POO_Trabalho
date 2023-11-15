@@ -10,7 +10,9 @@
     </div>
     <div>
         <%= form.label :password, "Senha"%>
-        <%= form.password_field :password%>
+        <%= form.password_field :password%><br>
+        <%= link_to "Esqueceu sua senha?", password_reset_path %>
     </div>
+
     <%= form.submit "Entrar"%>
 <%end%>

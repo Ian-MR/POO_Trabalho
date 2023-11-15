@@ -9,21 +9,21 @@ class CadastroController < ApplicationController
             @usuario = Usuario.new(params_usuario.merge({userable: @aluno}))
             if @usuario.save && @aluno.save
                 session[:usuario_id] = @usuario.id
-                redirect_to "/"
+                redirect_to root_path
             else
-                redirect_to :new
+                render :new
             end
         when "professor"
             @professor = Professor.new(params_professor)
             @usuario = Usuario.new(params_usuario.merge({userable: @professor}))
             if @usuario.save && @professor.save
                 session[:usuario_id] = @usuario.id
-                redirect_to "/"
+                redirect_to root_path
             else
-                redirect_to :new
+                render :new
             end
         else
-            redirect :new
+            render :new
         end
     end
 

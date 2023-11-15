@@ -1,0 +1,8 @@
+<h1>Esqueceu sua senha?</h1>
+<%= form_with url: password_reset_path do |form| %>
+    <div>
+        <%= form.label :email%>
+        <%= form.text_field :email%>
+    </div>
+    <%= form.submit "Trocar senha"%>
+<% end %>
