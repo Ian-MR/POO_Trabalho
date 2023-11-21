@@ -12,6 +12,7 @@
         <%= form.label :password, "Senha"%>
         <%= form.password_field :password%><br>
         <%= link_to "Esqueceu sua senha?", password_reset_path %>
+        <div>Não possui conta? <%= link_to "Cadastre-se", sign_up_path %></div>
     </div>
 
     <%= form.submit "Entrar"%>

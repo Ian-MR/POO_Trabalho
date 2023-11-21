@@ -2,11 +2,11 @@
 <%= form_with model: Current.usuario, url: password_path do |form| %>
     <div>
         <%= form.label :password, "Nova senha" %><br>
-        <%= form.text_field :password %>
+        <%= form.password_field :password %>
     </div>
     <div>
         <%= form.label :password_confirmation, "Confirmação da Senha"%><br>
-        <%= form.text_field :password_confirmation %>
+        <%= form.password_field :password_confirmation %>
     </div>
     <%= form.submit "Atualizar" %>
 
