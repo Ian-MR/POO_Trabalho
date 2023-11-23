@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get "/password/reset/edit" => "password_resets#edit"
   patch "/password/reset/edit" => "password_resets#update"
 
+  get "/atividade/cadastro" => "cadastro_atividades#new"
+  post"/atividade/cadastro" => "cadastro_atividades#create"
+
   delete "/logout" => "sessions#destroy"
 
 end

@@ -1,0 +1,68 @@
+<%= render partial: "/public/nav_bar" %>
+<h1>Cadastro de Atividades</h1>
+<%= form_with model: @atividade, url: atividade_cadastro_path do |form| %>
+    <div>
+        <%=form.label :titulo%>
+        <%=form.text_field :titulo%>
+    </div>
+    <div>
+        <%=form.label :descricao, "Descrição"%>
+        <%=form.text_area :descricao%>
+    </div>
+    <div>
+        <label for="atividade_modalidade">Modalidade</label>
+        <select name="atividade[modalidade]" id="atividade_modalidade">
+            <option value="" selected="selected">Selecione</option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+        </select>
+    </div>
+    <div id="abc">
+        <label for="atividade_tipo">Tipo</label>
+        <select name="atividade[tipo]" id="atividade_tipo">
+            <option value="">--------</option>
+        </select>
+    </div>
+    <div id="cba">
+        <div>
+            <label for="atividade_tipo">Tipo</label>
+            <input name="atividade[tipo]" id="atividade_tipo"> </input>
+        </div>
+        <div>
+            <label for="atividade_carga_horaria">Carga Horaria</label>
+            <input name="atividade[carga_horaria]" id="atividade_carga_horaria"> </input>
+        </div>
+    </div>
+    <%=form.submit "Cadastrar"%>
+<% end %>
+<script>
+    const selectModalidade = document.querySelector("#atividade_modalidade")
+    const selectTipo = document.querySelector("#atividade_tipo")
+    const divTipo = document.querySelector("#abc")
+    const divTipo2 = document.querySelector("#cba")
+
+    const tipos = {
+        1: [["Projeto aprovado PROEX","PAP"],["Projeto sob demanda PROEX","PDP"]], 
+        2:[["Curso","OC"],["Evento","OE"],["Evento Diversos","EV"],["Participação Comissão","PC"]],
+        3: []
+    }
+    
+    selectModalidade.addEventListener("change",(e)=>{
+        selectTipo.innerHTML = ""
+        divTipo.style.display = "block"
+        divTipo2.style.display = "none"
+        if(e.target.value != 4){
+            tipos[e.target.value].forEach(element => {
+                let op = document.createElement("option")
+                op.value = element[1]
+                op.innerText = element[0]
+                selectTipo.appendChild(op)
+            });
+        }else{
+            divTipo.style.display = "none"
+            divTipo2.style.display = "block"
+        }
+    })
+</script>

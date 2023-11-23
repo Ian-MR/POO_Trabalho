@@ -1,3 +1,7 @@
-<h1><%= @msg %><%=Current.usuario.nome%></h1>
-<%= button_to "Logout", logout_path, method: :delete %>
-<%= link_to "Trocar senha", password_path %>
+<%= render partial: '/public/nav_bar'%>
+<h1>Bem Vindo, <%=Current.usuario.nome%></h1>
+<h3><%= Current.usuario.userable_type%></h3>
+
+<% if Current.usuario.userable_type == "Professor"%>
+<%= link_to "Cadastrar Atividades", atividade_cadastro_path %>
+<%end%>

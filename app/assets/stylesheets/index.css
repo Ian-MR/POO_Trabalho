@@ -41,3 +41,31 @@
       display: none;
 }
 
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+}
+
+.footer-text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar{
+    padding: 15px;
+    display: flex;
+    width: 100vw;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-right{
+    display: flex;
+}
+
+#cba{
+    display: none
+}

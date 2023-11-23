@@ -3,89 +3,10 @@
     <span id="btnAluno" class="selecionada">Aluno</span>
     <span id="btnProfessor">Professor</span>
     <div id="aluno">
-        <%@aluno = Aluno.new%>
-        <%@aluno.usuario = Usuario.new%>
-        <%= form_with model: @aluno, url: "/sign_up/aluno" do |form_aluno| %>
-            <%= fields_for :usuario do |form_usuario| %>
-                <div>
-                    <%= form_usuario.label :nome %><br>
-                    <%= form_usuario.text_field :nome %>
-                </div>
-
-                <div>
-                    <%= form_usuario.label :email %><br>
-                    <%= form_usuario.text_field :email %>
-                </div>
-
-                <div>
-                    <%= form_usuario.label :matricula %><br>
-                    <%= form_usuario.text_field :matricula %>
-                </div>
-
-                <div>
-                    <%= form_usuario.label :telefone %><br>
-                    <%= form_usuario.text_field :telefone %>
-                </div>
-
-                <div>
-                    <%= form_usuario.label :password, "Senha" %><br>
-                    <%= form_usuario.password_field :password %>
-                </div>
-
-                <div>
-                    <%= form_usuario.label :password_confirmation, "Confirmação da Senha"%><br>
-                    <%= form_usuario.password_field :password_confirmation %>
-                </div>
-            <% end %>
-            <div>
-                <%= form_aluno.label :curso %><br>
-                <%= form_aluno.text_field :curso%>
-            </div>
-            <br>
-            <%= form_aluno.submit "Cadastrar"%>
-        <% end %>
+        <%= render partial: "/public/form_aluno" %>
     </div>
     <div id="professor">
-        <%@professor = Professor.new%>
-        <%@professor.usuario = Usuario.new%>
-        <%= form_with model: @professor, url: "/sign_up/professor" do |form_professor| %>
-        <%= fields_for :usuario do |form_usuario| %>
-                <div>
-                    <%= form_usuario.label :nome %><br>
-                    <%= form_usuario.text_field :nome %>
-                </div>
-        
-                <div>
-                    <%= form_usuario.label :email %><br>
-                    <%= form_usuario.text_field :email %>
-                </div>
-        
-                <div>
-                    <%= form_usuario.label :matricula %><br>
-                    <%= form_usuario.text_field :matricula %>
-                </div>
-        
-                <div>
-                    <%= form_usuario.label :telefone %><br>
-                    <%= form_usuario.text_field :telefone %>
-                </div>
-        
-                <div>
-                    <%= form_usuario.label :password ,"Senha"%><br>
-                    <%= form_usuario.password_field :password %>
-                </div>
-                <div>
-                    <%= form_usuario.label :password_confirmation ,"Confirmação da Senha"%><br>
-                    <%= form_usuario.password_field :password_confirmation %>
-                </div>
-            <% end %>
-            <div>
-                <%= form_professor.label :centro %><br>
-                <%= form_professor.text_field :centro %>
-            </div>
-            <br>
-            <%= form_professor.submit "Cadastrar" %>
-        <% end %>
+        <%= render partial: "/public/form_professor" %>
     </div>
  </div>
 </div>
@@ -95,7 +16,6 @@
     const btnProfessor = document.querySelector("#btnProfessor")
     const aluno = document.querySelector("#aluno")
     const professor = document.querySelector("#professor")
-    console.log("teste")
     btnAluno.addEventListener("click",()=>{
         if (!(btnAluno.classList[0] == "selecionada")){
             aluno.style.display = "flex"
