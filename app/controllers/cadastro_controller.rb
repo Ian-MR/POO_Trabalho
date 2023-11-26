@@ -36,6 +36,6 @@ class CadastroController < ApplicationController
         params.require(:aluno).permit(:curso)
     end
     def params_professor
-        params.require(:usuario).permit(:centro)
+        params.require(:professor).permit(:centro)
     end
 end

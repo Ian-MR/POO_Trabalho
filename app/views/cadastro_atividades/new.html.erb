@@ -25,44 +25,68 @@
             <option value="">--------</option>
         </select>
     </div>
-    <div id="cba">
-        <div>
-            <label for="atividade_tipo">Tipo</label>
-            <input name="atividade[tipo]" id="atividade_tipo"> </input>
+    <div >
+        <label for="atividade_alunos">Aluno</label>
+        <div id="alunos">
+            <input multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos"> 
         </div>
-        <div>
-            <label for="atividade_carga_horaria">Carga Horaria</label>
-            <input name="atividade[carga_horaria]" id="atividade_carga_horaria"> </input>
-        </div>
+        <button type="button" id="btnAluno">Adicionar Aluno</button>
     </div>
     <%=form.submit "Cadastrar"%>
 <% end %>
 <script>
     const selectModalidade = document.querySelector("#atividade_modalidade")
-    const selectTipo = document.querySelector("#atividade_tipo")
+    const btnAluno = document.querySelector("#btnAluno")
     const divTipo = document.querySelector("#abc")
-    const divTipo2 = document.querySelector("#cba")
-
+    const divAlunos = document.querySelector("#alunos")
     const tipos = {
-        1: [["Projeto aprovado PROEX","PAP"],["Projeto sob demanda PROEX","PDP"]], 
-        2:[["Curso","OC"],["Evento","OE"],["Evento Diversos","EV"],["Participação Comissão","PC"]],
-        3: []
+        1: [["Participação em projetos de extensão ligados à matriz curricular.", "colaboracao"], ["Contribuição em projetos isolados cadastrados na PROEX.", "contribuicao"]], 
+        2:[["Organização de eventos educacionais presenciais e remotos.", "coordenacao"], ["Engajamento em atividades de popularização científica.", "divulgacao"],["Colaboração em comissões de campanhas sociais e programas comunitários.", "participacao"],["Participação em Comissão organizadora de Campanhas ou programas sociais.", "organizacao"]],
+        3: [["Capacitação de professores da rede pública.", "formacao"], ["Apoio em aulas de reforço escolar supervisionadas.", "auxilio"], ["Assessoria e consultoria para públicos-alvo específicos.", "orientacao"], ["Atendimento ao público em espaços culturais e científicos.", "interatividade"], ["Contribuição na produção de conteúdo sociocultural e científico-tecnológico.", "criacao"]]
     }
-    
     selectModalidade.addEventListener("change",(e)=>{
-        selectTipo.innerHTML = ""
-        divTipo.style.display = "block"
-        divTipo2.style.display = "none"
+        divTipo.innerHTML = ""
         if(e.target.value != 4){
+            let labelTipo = document.createElement("label")
+            let selectTipo = document.createElement("select")
+            let divInputTipo = document.createElement("div")
+            labelTipo.for = "atividade_tipo"
+            labelTipo.innerHTML = "Tipo"
+            selectTipo.id ="atividade_tipo"
+            selectTipo.name = "atividade[tipo]"
+            divInputTipo.append(labelTipo,selectTipo)
             tipos[e.target.value].forEach(element => {
                 let op = document.createElement("option")
                 op.value = element[1]
                 op.innerText = element[0]
                 selectTipo.appendChild(op)
             });
+            divTipo.append(divInputTipo)
         }else{
-            divTipo.style.display = "none"
-            divTipo2.style.display = "block"
+            let divInputTipo = document.createElement("div")
+            let divInputHora = document.createElement("div")
+            let inputTipo = document.createElement("input")
+            let inputHora = document.createElement("input")
+            let labelTipo = document.createElement("label")
+            let labelHora = document.createElement("label")
+            labelTipo.for = "atividade_tipo"
+            labelTipo.innerHTML = "Tipo"
+            inputTipo.id = "atividade_tipo"
+            inputTipo.name = "atividade[tipo]"
+            labelHora.for = "atividade_carga_horaria"
+            labelHora.innerHTML = "Carga horaria"
+            inputHora.id = "atividade_carga_horaria"
+            inputHora.name = "atividade[carga_horaria]"
+            divInputTipo.append(labelTipo,inputTipo)
+            divInputHora.append(labelHora,inputHora)           
+            divTipo.append(divInputTipo,divInputHora)
         }
+    })
+    btnAluno.addEventListener("click",()=>{
+        let inputAluno = document.createElement("input")
+        inputAluno.name = "atividade[alunos][]"
+        inputAluno.id = "atividade_alunos"
+        inputAluno.multiple = "true"
+        divAlunos.appendChild(inputAluno)
     })
 </script>

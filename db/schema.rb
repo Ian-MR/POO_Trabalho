@@ -10,21 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_005742) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_25_232519) do
   create_table "alunos", force: :cascade do |t|
     t.string "curso"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "atividade_alunos", force: :cascade do |t|
+    t.boolean "validada"
+    t.integer "aluno_id", null: false
+    t.integer "atividade_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aluno_id"], name: "index_atividade_alunos_on_aluno_id"
+    t.index ["atividade_id"], name: "index_atividade_alunos_on_atividade_id"
+  end
+
   create_table "atividades", force: :cascade do |t|
     t.string "titulo"
     t.string "descricao"
-    t.integer "modalidalidade"
+    t.integer "modalidade"
     t.string "tipo"
     t.integer "carga_horaria"
+    t.integer "professor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["professor_id"], name: "index_atividades_on_professor_id"
   end
 
   create_table "professors", force: :cascade do |t|
@@ -45,4 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_005742) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "atividade_alunos", "alunos"
+  add_foreign_key "atividade_alunos", "atividades"
+  add_foreign_key "atividades", "professors"
 end

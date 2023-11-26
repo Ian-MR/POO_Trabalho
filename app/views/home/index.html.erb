@@ -5,3 +5,9 @@
 <% if Current.usuario.userable_type == "Professor"%>
 <%= link_to "Cadastrar Atividades", atividade_cadastro_path %>
 <%end%>
+<% @atividades.each do |atividade| %>
+    <div>
+      <h2><%= link_to atividade.titulo, atividade_path(id: atividade.id), class: "atividade-link"%></h2>
+      <p><%= atividade.descricao %></p>  
+    </div>
+<%end%>
