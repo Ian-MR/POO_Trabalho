@@ -1,0 +1,47 @@
+<%= form_with model: @atividade, url: atividade_edit_path(@atividade.id) do |form| %>
+    <div>
+        <%=form.label :titulo%>
+        <%=form.text_field :titulo, value: @atividade.titulo%>
+    </div>
+    <div>
+        <%=form.label :descricao, "Descrição: "%>
+        <%=form.text_area :descricao, value: @atividade.descricao%>
+    </div>
+    <div>
+       Modalidade: <%= @atividade.modalidade%>
+    </div>
+    <div>
+        Tipo: <%= @atividade.tipo%>
+    </div>
+    <div>
+        Carga Horaria: <%= @atividade.carga_horaria%>
+    </div>
+    <div >
+        <label for="atividade_alunos">Aluno</label>
+        <div id="alunos">
+            <% @atividade.alunos.each do |aluno| %>
+                <input value = <%=aluno.usuario.matricula%> multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos">
+            <%end%> 
+        </div>
+        <button type="button" id="btnAluno">Adicionar Aluno</button>
+    </div>
+    <%=form.submit "Editar"%>
+<% end %>
+
+
+<script>
+    const divAlunos = document.querySelector("#alunos")
+    btnAluno.addEventListener("click",()=>{
+            let inputAluno = document.createElement("input")
+            inputAluno.name = "atividade[alunos][]"
+            inputAluno.id = "atividade_alunos"
+            inputAluno.multiple = "true"
+            divAlunos.appendChild(inputAluno)
+        })
+
+    divAlunos.addEventListener("change",e=>{
+        if (e.target.value === "" && divAlunos.childElementCount> 1){
+            divAlunos.removeChild(e.target)
+        }
+        })
+</script>

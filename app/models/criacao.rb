@@ -1,3 +1,4 @@
 class Criacao < Atividade
-    @@carga_horaria = 25
+    @carga_horaria = 10
+    @carga_maxima = 50
 end

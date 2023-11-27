@@ -54,7 +54,7 @@ class CadastroAtividadesController < ApplicationController
             if aluno
                 @atividade.alunos << aluno.userable
                 x = AtividadeAluno.where(atividade_id: @atividade.id, aluno_id: aluno.userable_id).first
-                x.validada = @atividade.validarAluno?(aluno.matricula,atividade_params[:tipo])
+                x.validada = @atividade.validarAluno?(aluno.matricula,atividade_params[:tipo],atividade_params[:modalidade], @atividade)
                 x.save
             end
         end

@@ -1,39 +1,47 @@
+<%=stylesheet_link_tag "cadastro_atividades"%>
 <%= render partial: "/public/nav_bar" %>
-<h1>Cadastro de Atividades</h1>
-<%= form_with model: @atividade, url: atividade_cadastro_path do |form| %>
-    <div>
-        <%=form.label :titulo%>
-        <%=form.text_field :titulo%>
-    </div>
-    <div>
-        <%=form.label :descricao, "Descrição"%>
-        <%=form.text_area :descricao%>
-    </div>
-    <div>
-        <label for="atividade_modalidade">Modalidade</label>
-        <select name="atividade[modalidade]" id="atividade_modalidade">
-            <option value="" selected="selected">Selecione</option>
-            <option value="1">I</option>
-            <option value="2">II</option>
-            <option value="3">III</option>
-            <option value="4">IV</option>
-        </select>
-    </div>
-    <div id="abc">
-        <label for="atividade_tipo">Tipo</label>
-        <select name="atividade[tipo]" id="atividade_tipo">
-            <option value="">--------</option>
-        </select>
-    </div>
-    <div >
-        <label for="atividade_alunos">Aluno</label>
-        <div id="alunos">
-            <input multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos"> 
+<div id="fundo-tela">
+    <div id="fundo-cadastro">
+        <h1 id="titulo-login">Cadastro de Atividades</h1>
+        <div class="linha-wrapper">
+            <hr id="linha-azul">
         </div>
-        <button type="button" id="btnAluno">Adicionar Aluno</button>
+        <%= form_with model: @atividade, url: atividade_cadastro_path do |form| %>
+        <div>
+            <%=form.label :titulo%>
+            <%=form.text_field :titulo%>
+        </div>
+        <div>
+            <%=form.label :descricao, "Descrição"%>
+            <%=form.text_area :descricao%>
+        </div>
+        <div>
+            <label for="atividade_modalidade">Modalidade</label>
+            <select name="atividade[modalidade]" id="atividade_modalidade">
+                <option value="" selected="selected">Selecione</option>
+                <option value="1">I</option>
+                <option value="2">II</option>
+                <option value="3">III</option>
+                <option value="4">IV</option>
+            </select>
+        </div>
+        <div id="abc">
+            <label for="atividade_tipo">Tipo</label>
+            <select name="atividade[tipo]" id="atividade_tipo">
+                <option value="">--------</option>
+            </select>
+        </div>
+        <div >
+            <label for="atividade_alunos">Aluno</label>
+            <div id="alunos">
+                <input multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos"> 
+            </div>
+            <button type="button" id="btnAluno">Adicionar Aluno</button>
+        </div>
+            <%=form.submit "Cadastrar"%>
+        <% end %>
     </div>
-    <%=form.submit "Cadastrar"%>
-<% end %>
+</div>
 <script>
     const selectModalidade = document.querySelector("#atividade_modalidade")
     const btnAluno = document.querySelector("#btnAluno")
@@ -89,4 +97,9 @@
         inputAluno.multiple = "true"
         divAlunos.appendChild(inputAluno)
     })
+    divAlunos.addEventListener("change",e=>{
+        if (e.target.value === "" && divAlunos.childElementCount> 1){
+            divAlunos.removeChild(e.target)
+        }
+        })
 </script>

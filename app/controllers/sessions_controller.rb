@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
             session[:usuario_id] = usuario.id
             redirect_to root_path
         else
-            @login_erro = true
+            flash[:alert] = "E-mail ou senha incorreto!"
             render :new
         end
     end

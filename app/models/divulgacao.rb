@@ -1,4 +1,5 @@
 class Divulgacao < Atividade
-    @@carga_horaria = 20
+    @carga_maxima = 100
+    @carga_horaria = 20
 end
 

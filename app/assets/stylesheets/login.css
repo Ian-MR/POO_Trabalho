@@ -84,6 +84,9 @@
 
 #btnEntrar{
     color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
     padding: 0;
     width: 196px;
     height: 51px;
@@ -98,7 +101,7 @@
 #erro {
     position: absolute;
     padding-top: 5px;
-    margin-left: 46px;
+    margin-left: 47px;
     color: #e52207;
     display: flex;
     justify-content: center;

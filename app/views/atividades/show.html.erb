@@ -1,0 +1,23 @@
+<%= render partial: "/public/nav_bar" %>
+
+<h1><%= @atividade.titulo%></h1>
+<h2><%= @atividade.professor.usuario.nome %></h2>
+<div style="display: flex;">
+<% @atividade.alunos.each do |aluno| %>
+<h3><%= aluno.usuario.nome %>; </h3>
+<%end%>
+</div>
+<%if Current.usuario.userable_type == "Aluno"%>
+<% if AtividadeAluno.where(aluno_id: Current.usuario.userable_id, atividade_id: @atividade.id).first.validada%>
+<div>Horas validadas</div>
+<%else%>
+<div>Horas não validadas</div>
+<%end %>
+<%end %>
+<div>Modalidade:<%= @atividade.modalidade %></div>
+<div>Tipo:<%= @atividade.tipo %></div>
+<div>Carga Horaria: <%= @atividade.carga_horaria %></div>
+<p><%= @atividade.descricao%></p>
+<% if Current.usuario.userable == @atividade.professor %>
+<%= link_to "Editar", atividade_edit_path(@atividade.id) %>
+<%end%>

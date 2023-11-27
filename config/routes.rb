@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   post"/atividade/cadastro" => "cadastro_atividades#create"
 
   get "/atividade/:id" => "atividades#show", as: "atividade"
+  get "/atividade/:id/edit" => "atividades#edit"
+  patch "/atividade/:id/edit" => "atividades#update", as: "atividade_edit"
+
+  get "/horas" => "horas#show"
 
   delete "/logout" => "sessions#destroy"
 
