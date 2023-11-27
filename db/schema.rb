@@ -45,6 +45,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_25_232519) do
 
   create_table "professors", force: :cascade do |t|
     t.string "centro"
+    t.boolean "coordenador", default: false
+    t.string "curso", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -30,6 +30,15 @@ class AtividadesController < ApplicationController
         end
     end
 
+    def destroy
+        @atividade = Atividade.find_by(id: id_param)
+        if @atividade && Current.usuario.userable == @atividade.professor
+            @atividade.destroy
+        end
+        redirect_to root_path
+    end
+    
+
     private
     def id_param
         params.require(:id)

@@ -1,6 +1,6 @@
 class Atividade < ApplicationRecord
     belongs_to :professor
-    has_many :atividade_aluno
+    has_many :atividade_aluno, dependent: :destroy
     has_many :alunos, through: :atividade_aluno
     @carga_horaria = 0
     @carga_maxima = 200

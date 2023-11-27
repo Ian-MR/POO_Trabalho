@@ -20,4 +20,5 @@
 <p><%= @atividade.descricao%></p>
 <% if Current.usuario.userable == @atividade.professor %>
 <%= link_to "Editar", atividade_edit_path(@atividade.id) %>
+<%= button_to "Excluir", delete_path(@atividade.id), method: :delete %>
 <%end%>

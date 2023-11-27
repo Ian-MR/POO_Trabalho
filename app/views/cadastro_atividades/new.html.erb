@@ -2,49 +2,55 @@
 <%= render partial: "/public/nav_bar" %>
 <div id="fundo-tela">
     <div id="fundo-cadastro">
-        <h1 id="titulo-login">Cadastro de Atividades</h1>
-        <div class="linha-wrapper">
+        <h1 id="titulo-login">Cadastro de Atividade</h1>
+        <div class="wrapper">
             <hr id="linha-azul">
         </div>
         <%= form_with model: @atividade, url: atividade_cadastro_path do |form| %>
-        <div>
-            <%=form.label :titulo%>
-            <%=form.text_field :titulo%>
+        <div class="wrapper">
+            <%=form.text_field :titulo, placeholder: "Título", class: "text-input"%>
         </div>
-        <div>
-            <%=form.label :descricao, "Descrição"%>
-            <%=form.text_area :descricao%>
+        <div class="wrapper">
+            <%=form.text_area :descricao, placeholder: "Descrição",class: "text-input"%>
         </div>
-        <div>
-            <label for="atividade_modalidade">Modalidade</label>
-            <select name="atividade[modalidade]" id="atividade_modalidade">
-                <option value="" selected="selected">Selecione</option>
-                <option value="1">I</option>
-                <option value="2">II</option>
-                <option value="3">III</option>
-                <option value="4">IV</option>
-            </select>
-        </div>
-        <div id="abc">
-            <label for="atividade_tipo">Tipo</label>
-            <select name="atividade[tipo]" id="atividade_tipo">
-                <option value="">--------</option>
-            </select>
-        </div>
-        <div >
-            <label for="atividade_alunos">Aluno</label>
-            <div id="alunos">
-                <input multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos"> 
+        <div class="wrapper">
+            <div>
+                <select class="text-input" name="atividade[modalidade]" id="atividade_modalidade">
+                    <option value="" selected">Modalidade</option>
+                    <option value="1">Projetos e Programas</option>
+                    <option value="2">Cursos e Eventos</option>
+                    <option value="3">Prestação de Serviços</option>
+                    <option value="4">Disciplinas Extensionista</option>
+                </select>
             </div>
-            <button type="button" id="btnAluno">Adicionar Aluno</button>
+            <div id="abc">
+                <select class="text-input" name="atividade[tipo]" id="atividade_tipo">
+                    <option value="" selected">Tipo</option>
+                </select>
+            </div>
         </div>
-            <%=form.submit "Cadastrar"%>
+        <div class="wrapper">
+            <div id="alunos">
+                <input class="text-input" placeholder="Matricula do Aluno" multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos"> 
+            </div> 
+        </div>
+        <div class="wrapper">
+            <div class="button-wrapper">
+                <button type="button" id="btnAluno">Adicionar Aluno</button>
+                <button type="button" id="rmvAluno">Remover Aluno</button>
+            </div>
+        </div>
+        
+        <div class="wrapper">
+            <%=form.submit "Cadastrar", id: "btnCadastrar"%>
+        </div>
         <% end %>
     </div>
 </div>
 <script>
     const selectModalidade = document.querySelector("#atividade_modalidade")
     const btnAluno = document.querySelector("#btnAluno")
+    const btnRmvAluno = document.querySelector("#rmvAluno")
     const divTipo = document.querySelector("#abc")
     const divAlunos = document.querySelector("#alunos")
     const tipos = {
@@ -54,40 +60,43 @@
     }
     selectModalidade.addEventListener("change",(e)=>{
         divTipo.innerHTML = ""
-        if(e.target.value != 4){
-            let labelTipo = document.createElement("label")
-            let selectTipo = document.createElement("select")
-            let divInputTipo = document.createElement("div")
-            labelTipo.for = "atividade_tipo"
-            labelTipo.innerHTML = "Tipo"
-            selectTipo.id ="atividade_tipo"
-            selectTipo.name = "atividade[tipo]"
-            divInputTipo.append(labelTipo,selectTipo)
-            tipos[e.target.value].forEach(element => {
-                let op = document.createElement("option")
-                op.value = element[1]
-                op.innerText = element[0]
-                selectTipo.appendChild(op)
-            });
+        let selectTipo = document.createElement("select")
+        let divInputTipo = document.createElement("div")
+        selectTipo.id ="atividade_tipo"
+        selectTipo.name = "atividade[tipo]"
+        selectTipo.classList.add("text-input")
+        divInputTipo.append(selectTipo)
+        if (e.target.value == ""){
+            let op = document.createElement("option")
+            op.innerText = "Tipo"
+            selectTipo.appendChild(op)
             divTipo.append(divInputTipo)
         }else{
-            let divInputTipo = document.createElement("div")
-            let divInputHora = document.createElement("div")
-            let inputTipo = document.createElement("input")
-            let inputHora = document.createElement("input")
-            let labelTipo = document.createElement("label")
-            let labelHora = document.createElement("label")
-            labelTipo.for = "atividade_tipo"
-            labelTipo.innerHTML = "Tipo"
-            inputTipo.id = "atividade_tipo"
-            inputTipo.name = "atividade[tipo]"
-            labelHora.for = "atividade_carga_horaria"
-            labelHora.innerHTML = "Carga horaria"
-            inputHora.id = "atividade_carga_horaria"
-            inputHora.name = "atividade[carga_horaria]"
-            divInputTipo.append(labelTipo,inputTipo)
-            divInputHora.append(labelHora,inputHora)           
-            divTipo.append(divInputTipo,divInputHora)
+            if(e.target.value != 4){
+                tipos[e.target.value].forEach(element => {
+                    let op = document.createElement("option")
+                    op.value = element[1]
+                    op.innerText = element[0]
+                    selectTipo.appendChild(op)
+                });
+                divTipo.append(divInputTipo)
+            }else{
+                let divInputTipo = document.createElement("div")
+                let divInputHora = document.createElement("div")
+                let inputTipo = document.createElement("input")
+                let inputHora = document.createElement("input")
+                inputTipo.id = "atividade_tipo"
+                inputTipo.classList.add("text-input")
+                inputTipo.placeholder = "Disciplina"
+                inputTipo.name = "atividade[tipo]"
+                inputHora.id = "atividade_carga_horaria"
+                inputHora.placeholder = "Carga Horária"
+                inputHora.classList.add("text-input")
+                inputHora.name = "atividade[carga_horaria]"
+                divInputTipo.append(inputTipo)
+                divInputHora.append(inputHora)           
+                divTipo.append(divInputTipo,divInputHora)
+            }
         }
     })
     btnAluno.addEventListener("click",()=>{
@@ -95,11 +104,16 @@
         inputAluno.name = "atividade[alunos][]"
         inputAluno.id = "atividade_alunos"
         inputAluno.multiple = "true"
+        inputAluno.classList.add("text-input")
+        inputAluno.placeholder = "Matricula do Aluno"
         divAlunos.appendChild(inputAluno)
+        btnRmvAluno.style.display = "block"
     })
-    divAlunos.addEventListener("change",e=>{
-        if (e.target.value === "" && divAlunos.childElementCount> 1){
-            divAlunos.removeChild(e.target)
+    btnRmvAluno.addEventListener("click",()=>{
+        if (divAlunos.childElementCount > 1){
+            divAlunos.removeChild(divAlunos.lastChild)
+            btnRmvAluno.style.display = divAlunos.childElementCount == 1 ? "none":"block"
         }
         })
+
 </script>

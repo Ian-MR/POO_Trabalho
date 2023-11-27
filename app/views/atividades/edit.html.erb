@@ -1,47 +1,57 @@
-<%= form_with model: @atividade, url: atividade_edit_path(@atividade.id) do |form| %>
-    <div>
-        <%=form.label :titulo%>
-        <%=form.text_field :titulo, value: @atividade.titulo%>
-    </div>
-    <div>
-        <%=form.label :descricao, "Descrição: "%>
-        <%=form.text_area :descricao, value: @atividade.descricao%>
-    </div>
-    <div>
-       Modalidade: <%= @atividade.modalidade%>
-    </div>
-    <div>
-        Tipo: <%= @atividade.tipo%>
-    </div>
-    <div>
-        Carga Horaria: <%= @atividade.carga_horaria%>
-    </div>
-    <div >
-        <label for="atividade_alunos">Aluno</label>
-        <div id="alunos">
-            <% @atividade.alunos.each do |aluno| %>
-                <input value = <%=aluno.usuario.matricula%> multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos">
-            <%end%> 
+<%=stylesheet_link_tag "atividades"%>
+<%= render partial: "/public/nav_bar" %>
+<div id="fundo-tela">
+    <div id="fundo-cadastro">
+        <%= form_with model: @atividade, url: atividade_edit_path(@atividade.id) do |form| %>
+            <h1 id="titulo-login">Editar Atividade</h1>
+            <div class="wrapper">
+                <hr id="linha-azul">
+            </div>
+            <div class="wrapper">
+                <%=form.text_field :titulo, value: @atividade.titulo, placeholder: "Título", class: "text-input"%>
+            </div>
+            <div class="wrapper">
+                <%=form.text_area :descricao, value: @atividade.descricao, placeholder: "Descrição", class: "text-input"%>
+            </div>
+            <div class="wrapper">
+                <div id="alunos">
+                    <% @atividade.alunos.each do |aluno| %>
+                        <input class="text-input" value = <%=aluno.usuario.matricula%> multiple="true" type="text" name="atividade[alunos][]" id="atividade_alunos">
+                    <%end%> 
+                </div>
+            </div>
+            <div class="wrapper">
+            <div class="button-wrapper">
+                <button type="button" id="btnAluno">Adicionar Aluno</button>
+                <button type="button" id="rmvAluno">Remover Aluno</button>
+            </div>
         </div>
-        <button type="button" id="btnAluno">Adicionar Aluno</button>
+        
+        <div class="wrapper">
+            <%=form.submit "Editar", id: "btnCadastrar"%>
+        </div>
+        <% end %>
     </div>
-    <%=form.submit "Editar"%>
-<% end %>
-
-
+</div>
 <script>
     const divAlunos = document.querySelector("#alunos")
+    const btnRmvAluno = document.querySelector("#rmvAluno")
+    const btnAluno = document.querySelector("#btnAluno")
     btnAluno.addEventListener("click",()=>{
-            let inputAluno = document.createElement("input")
-            inputAluno.name = "atividade[alunos][]"
-            inputAluno.id = "atividade_alunos"
-            inputAluno.multiple = "true"
-            divAlunos.appendChild(inputAluno)
-        })
-
-    divAlunos.addEventListener("change",e=>{
-        if (e.target.value === "" && divAlunos.childElementCount> 1){
-            divAlunos.removeChild(e.target)
+        let inputAluno = document.createElement("input")
+        inputAluno.name = "atividade[alunos][]"
+        inputAluno.id = "atividade_alunos"
+        inputAluno.multiple = "true"
+        inputAluno.classList.add("text-input")
+        inputAluno.placeholder = "Matricula do Aluno"
+        divAlunos.appendChild(inputAluno)
+        btnRmvAluno.style.display = "block"
+    })
+    btnRmvAluno.addEventListener("click",()=>{
+        if (divAlunos.childElementCount > 1){
+            divAlunos.removeChild(divAlunos.lastChild)
+            btnRmvAluno.style.display = divAlunos.childElementCount == 1 ? "none":"block"
         }
         })
+
 </script>

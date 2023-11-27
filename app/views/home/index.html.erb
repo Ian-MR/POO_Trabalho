@@ -5,6 +5,9 @@
 <% case Current.usuario.userable_type%>
 <%when "Professor" %>
 <%= link_to "Cadastrar Atividades", atividade_cadastro_path %>
+<% if Current.usuario.userable.coordenador%>
+  Coordenador: <%= Current.usuario.userable.curso %>
+<%end%>
 <% when"Aluno" %>
 <%= link_to "Ver Horas", horas_path %>
 <%end%>

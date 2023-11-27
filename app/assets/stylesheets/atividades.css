@@ -14,7 +14,7 @@ body{
 
 #fundo-cadastro{
     width: 731px;
-    min-height: 567px;
+    min-height: 510px;
     height: fit-content;
     flex-shrink: 0;
     border-radius: 5px;
@@ -113,18 +113,6 @@ body{
     background: #F5F5F5;
 }
 
-#atividade_carga_horaria {
-    padding-left: 15px;
-    font-size: 12px;
-    margin-top: 14px;
-    width: 439px;
-    height: 38px;
-    flex-shrink: 0;
-    border-radius: 5px;
-    border: 1px solid #000;
-    background: #F5F5F5;
-}
-
 #alunos {
     width: min-content;
 }
@@ -180,6 +168,6 @@ body{
     font-weight: 400;
 }
 
-#btnCadastar:hover {
+#btnCadastar:hover{
     background-color:#E97711;
 }

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "/atividade/cadastro" => "cadastro_atividades#new"
   post"/atividade/cadastro" => "cadastro_atividades#create"
 
+  delete "/atividade/:id/deletar" => "atividades#destroy", as: "delete"
   get "/atividade/:id" => "atividades#show", as: "atividade"
   get "/atividade/:id/edit" => "atividades#edit"
   patch "/atividade/:id/edit" => "atividades#update", as: "atividade_edit"
