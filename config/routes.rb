@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get "/atividade/:id/edit" => "atividades#edit"
   patch "/atividade/:id/edit" => "atividades#update", as: "atividade_edit"
 
+  get "/coordenador/relatorio" => "coordenador#show", as: "coordenador"
+
   get "/horas" => "horas#show"
 
   delete "/logout" => "sessions#destroy"

@@ -1,5 +1,4 @@
 <%=stylesheet_link_tag "atividades"%>
-<%= render partial: "/public/nav_bar" %>
 <div id="fundo-tela">
     <div id="fundo-cadastro">
         <%= form_with model: @atividade, url: atividade_edit_path(@atividade.id) do |form| %>

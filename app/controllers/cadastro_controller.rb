@@ -7,11 +7,16 @@ class CadastroController < ApplicationController
         case params[:tipo].downcase
         when "aluno"
             @aluno = Aluno.new(params_aluno)
-            @usuario = Usuario.new(params_usuario.merge({userable: @aluno}))
+            @usuario = @aluno.build_usuario(params_usuario)
+            @usuario.userable = @aluno
+            #@usuario = Usuario.new(params_usuario.merge({userable: @aluno}))
             if @usuario.save && @aluno.save
-                session[:usuario_id] = @usuario.id
+                session[:usuario_id] = @aluno.usuario.id
                 redirect_to root_path
             else
+                puts @aluno.errors.full_messages
+                puts @usuario.errors.full_messages
+                puts @usuario.userable
                 render :new
             end
         when "professor"
@@ -20,7 +25,7 @@ class CadastroController < ApplicationController
             if @usuario.save && @professor.save
                 session[:usuario_id] = @usuario.id
                 redirect_to root_path
-            else
+            else   
                 render :new
             end
         else

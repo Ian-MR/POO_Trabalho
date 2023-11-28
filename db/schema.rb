@@ -13,10 +13,10 @@
 ActiveRecord::Schema[7.1].define(version: 2023_11_25_232519) do
   create_table "alunos", force: :cascade do |t|
     t.string "curso"
-    t.integer "horas_I"
-    t.integer "horas_II"
-    t.integer "horas_III"
-    t.integer "horas_IV"
+    t.integer "horas_I", default: 0
+    t.integer "horas_II", default: 0
+    t.integer "horas_III", default: 0
+    t.integer "horas_IV", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

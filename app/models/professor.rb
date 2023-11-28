@@ -3,4 +3,6 @@ class Professor < ApplicationRecord
     accepts_nested_attributes_for :usuario
     has_many :atividades
     before_save :coordenador?
+
+    validates :centro, presence:true
 end

@@ -32,8 +32,12 @@ class AtividadesController < ApplicationController
 
     def destroy
         @atividade = Atividade.find_by(id: id_param)
+        alunos = @atividade.alunos
         if @atividade && Current.usuario.userable == @atividade.professor
             @atividade.destroy
+            alunos.each do |aluno|
+                Atividade.new.verificarHoras(aluno)
+            end
         end
         redirect_to root_path
     end

@@ -53,9 +53,11 @@ class CadastroAtividadesController < ApplicationController
             aluno = Usuario.find_by(matricula: mat)
             if aluno
                 @atividade.alunos << aluno.userable
+                @atividade.save
                 x = AtividadeAluno.where(atividade_id: @atividade.id, aluno_id: aluno.userable_id).first
                 x.validada = @atividade.validarAluno?(aluno.matricula,atividade_params[:tipo],atividade_params[:modalidade], @atividade)
                 x.save
+                Atividade.new.verificarHoras(aluno.userable)
             end
         end
         if @atividade.save

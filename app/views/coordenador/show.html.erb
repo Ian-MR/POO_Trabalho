@@ -1,0 +1,13 @@
+<%=render partial: "/public/nav_bar"%>
+<h1 id="titulo-home">Alunos(<%=Current.usuario.userable.curso%>)</h1>
+<div class="alunos-wrapper">
+  <% @alunos.each do |aluno| %>
+    <div class="aluno-wrapper">
+      <h2 class="titulo-aluno"><%= aluno.usuario.nome %></h2>
+      <div class="hora"> Horas ACE I: <%= aluno.horas_I %>h</div>  
+      <div class="hora"> Horas ACE II: <%= aluno.horas_II %>h</div>  
+      <div class="hora"> Horas ACE III: <%= aluno.horas_III %>h</div>  
+      <div class="hora"> Horas ACE IV: <%= aluno.horas_IV %>h</div>  
+    </div>
+  <%end%>
+</div>

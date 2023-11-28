@@ -1,9 +1,38 @@
 <div class="nav-bar">
     <div class="nav-left">
-        <%= link_to "HOME", root_path %>
+        <%= link_to image_tag('logo_uenf_vertical.svg', id:"logo-uenf"), root_path %>
+        <%= link_to "Home", root_path , class:"nav-buttons"%>
+        <% case Current.usuario.userable_type%>
+        <%when "Professor" %>
+        <%= link_to "Cadastrar Atividades", atividade_cadastro_path,class:"nav-buttons"%>
+        <% if Current.usuario.userable.coordenador%>
+        <%= link_to "Relatórios", coordenador_path,class:"nav-buttons"%>
+        <%end%></h2>
+        <% when"Aluno" %>
+        <%= link_to "Ver Horas", horas_path,class:"nav-buttons"%>
+        <%end%>
     </div>
     <div class="nav-right">
-        <%= link_to "Trocar senha", password_path %>
-        <%= button_to "Logout", logout_path, method: :delete %>
+
+        <div class="dados">
+            <div id="nome"><%=Current.usuario.nome%></div>
+            <div id="funcao"><%=Current.usuario.userable_type.downcase%></div>
+        </div>
+        <div class="icon-user">
+            <%=image_tag('iconusuario.png',id:"user-icon")%>
+            <div style="display: none;" class="drop-usuario">
+                <%=  link_to "Trocar senha", password_path, id:"user-change"%>
+                <%= button_to "Logout", logout_path, method: :delete ,id:"user-logout"%>
+            </div>
+        </div> 
     </div>  
 </div>
+
+<script>
+    const icon = document.querySelector("#user-icon")
+    const drop = document.querySelector(".drop-usuario")
+
+    icon.addEventListener("click", ()=>{
+        drop.style.display = drop.style.display == "none" ? "block":"none"
+    })
+</script>

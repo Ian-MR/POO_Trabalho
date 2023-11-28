@@ -3,4 +3,5 @@ class Aluno < ApplicationRecord
     accepts_nested_attributes_for :usuario
     has_many :atividade_aluno
     has_many :atividades, through: :atividade_aluno
+    validates :curso, presence: true
 end

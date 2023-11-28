@@ -1,20 +1,23 @@
 body{
     background: #1D3771;
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #fundo-tela{
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    display: flex;
+    min-width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 10vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #fundo-cadastro{
     width: 731px;
     min-height: 567px;
+    margin-top: 20vh;
     height: fit-content;
     flex-shrink: 0;
     border-radius: 5px;
@@ -91,7 +94,7 @@ body{
 
 #atividade_modalidade {
     margin-top: 14px;
-    font-size: 14px;
+    font-size: 20px;
     margin-right: 25px;
     width: 195px;
     height: 38px;
@@ -103,7 +106,7 @@ body{
 
 #atividade_tipo {
     padding-left: 15px;
-    font-size: 12px;
+    font-size: 20px;
     margin-top: 14px;
     width: 439px;
     height: 38px;
@@ -115,7 +118,7 @@ body{
 
 #atividade_carga_horaria {
     padding-left: 15px;
-    font-size: 12px;
+    font-size: 20px;
     margin-top: 14px;
     width: 439px;
     height: 38px;
@@ -150,9 +153,14 @@ body{
     color: #F5F5F5;
     font-size: 16px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 #rmvAluno {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     display: none;
     border: none;
     margin-top: 10px;
@@ -166,7 +174,12 @@ body{
     font-weight: 400;
 }
 
+
 #btnCadastrar {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     border: none;
     margin-top: 26px;
     margin-bottom: 35px;
@@ -176,7 +189,7 @@ body{
     border-radius: 5px;
     background: #5E96AE;
     color: #F5F5F5;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 400;
 }
 

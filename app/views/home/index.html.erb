@@ -1,19 +1,12 @@
 <%= render partial: '/public/nav_bar'%>
-<h1>Bem Vindo, <%=Current.usuario.nome%></h1>
-<h3><%= Current.usuario.userable_type%></h3>
-
-<% case Current.usuario.userable_type%>
-<%when "Professor" %>
-<%= link_to "Cadastrar Atividades", atividade_cadastro_path %>
-<% if Current.usuario.userable.coordenador%>
-  Coordenador: <%= Current.usuario.userable.curso %>
-<%end%>
-<% when"Aluno" %>
-<%= link_to "Ver Horas", horas_path %>
-<%end%>
-<% @atividades.each do |atividade| %>
-    <div>
-      <h2><%= link_to atividade.titulo, atividade_path(id: atividade.id), class: "atividade-link"%></h2>
-      <p><%= atividade.descricao %></p>  
-    </div>
-<%end%>
+<h1 id="titulo-home">Bem Vindo, <%=Current.usuario.userable_type.downcase%>!</h1>
+<h2 id="sub-titulo-home">Suas atividades: </h2>
+<div class="atividades-wrapper">
+  <% @atividades.each do |atividade| %>
+      <div class="atividade-wrapper" onclick="window.location.href='<%=atividade_path(id: atividade.id)%>'">
+        <h2 id="titulo-atividade"><%=atividade.titulo%></h2>
+        <p id="descricao"><%= atividade.descricao %></p>  
+      </div>
+  <%end%>
+</div>
+<%= render partial: '/public/footer'%>

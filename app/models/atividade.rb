@@ -2,6 +2,12 @@ class Atividade < ApplicationRecord
     belongs_to :professor
     has_many :atividade_aluno, dependent: :destroy
     has_many :alunos, through: :atividade_aluno
+
+    validates :titulo, presence: true
+    validates :descricao, presence: true
+    validates :modalidade, presence: true
+    validates :tipo, presence: true
+    validates :alunos, presence: true
     @carga_horaria = 0
     @carga_maxima = 200
 
@@ -28,14 +34,14 @@ class Atividade < ApplicationRecord
         when "4"
             hora_maxima = aluno.horas_IV
         end
-        if (hora_maxima + modelo.class.carga_horaria) <=200
+        if (hora_maxima + modelo[:carga_horaria]) <=200
             ativs= AtividadeAluno.joins(:atividade).where(aluno_id: aluno.id ,validada: true, atividades: { tipo: tipo_atividade })
             ativs.each do |ativ|
                 hora += Atividade.find(ativ.atividade_id).carga_horaria
             end
         end
         verificarHoras(aluno) 
-        hora < modelo.class.carga_maxima && (hora_maxima + modelo.class.carga_horaria) <= 200
+        hora < modelo.class.carga_maxima && (hora_maxima + modelo[:carga_horaria]) <= 200
     end
 
     def verificarHoras(aluno)

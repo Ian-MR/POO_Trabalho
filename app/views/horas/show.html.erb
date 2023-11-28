@@ -1,17 +1,58 @@
 <%= render partial: "/public/nav_bar" %>
-
-<div>
-    ACEI: <%=Current.usuario.userable.horas_I%>
+<% ativs = Current.usuario.userable.atividades%>
+<h1 id="titulo-home">Horas</h1>
+<div class="atividades-wrapper">
+    <div class="hora-wrapper">
+        <h2 class="titulo-hora">
+            ACE I: <%=Current.usuario.userable.horas_I%>h
+        </h2>
+        <div class="horas-wrapper">
+            <%ativs.joins(:atividade_aluno).where(modalidade: 1, atividade_aluno: {validada:true})&.order(:titulo).each do |ativ|%>
+                <div class="info-wrapper">
+                    <div class="info-titulo"><%=ativ.titulo%></div>
+                    <div class="info-hora"><%=ativ.carga_horaria%></div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+    <div class="hora-wrapper">
+        <h2 class="titulo-hora">
+            ACE II: <%=Current.usuario.userable.horas_II%>h
+        </h2>
+        <div class="horas-wrapper">
+            <%ativs.joins(:atividade_aluno).where(modalidade: 2, atividade_aluno: {validada:true})&.order(:titulo).each do |ativ|%>
+                <div class="info-wrapper">
+                    <div class="info-titulo"><%=ativ.titulo%></div>
+                    <div class="info-hora"><%=ativ.carga_horaria%></div>
+                </div>
+            <%end%>
+        </div>   
+    </div>
+    <div class="hora-wrapper">
+        <h2 class="titulo-hora">
+        ACE III: <%=Current.usuario.userable.horas_III%>h
+        </h2>
+        <div class="horas-wrapper">
+            <%ativs.joins(:atividade_aluno).where(modalidade: 3, atividade_aluno: {validada:true})&.order(:titulo).each do |ativ|%>
+                <div class="info-wrapper">
+                    <div class="info-titulo"><%=ativ.titulo%></div>
+                    <div class="info-hora"><%=ativ.carga_horaria%></div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+    <div class="hora-wrapper">
+        <h2 class="titulo-hora">
+            ACE IV: <%=Current.usuario.userable.horas_IV%>h
+        </h2>
+        <div class="horas-wrapper">
+            <%ativs.joins(:atividade_aluno).where(modalidade: 4, atividade_aluno: {validada:true})&.order(:titulo).each do |ativ|%>
+                <div class="info-wrapper">
+                    <div class="info-titulo"><%=ativ.titulo%></div>
+                    <div class="info-hora"><%=ativ.carga_horaria%></div>
+                </div>
+            <%end%>
+        </div>
+    </div>
 </div>
-
-<div>
-    ACEI: <%=Current.usuario.userable.horas_II%>
-</div>
-
-<div>
- ACEI: <%=Current.usuario.userable.horas_III%>
-</div>
-
-<div>
-    ACEI: <%=Current.usuario.userable.horas_IV%>
-</div>
+<%= render partial: "/public/footer"%>
