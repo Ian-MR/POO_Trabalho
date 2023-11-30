@@ -1,7 +1,12 @@
-<div class="viewBox">
- <div class="loginCard">
-    <span id="btnAluno" class="selecionada">Aluno</span>
-    <span id="btnProfessor">Professor</span>
+<%=stylesheet_link_tag "cadastro"%>
+
+<div id="fundo-tela">
+ <div id="fundo-cadastro">
+    <div class="class-wrapper">
+        <div id="btnAluno" class="selecionada">Aluno</div>
+        <div id="btnProfessor">Professor</div>
+    </div>
+    <h3 id="titulo-login">Cadastro de&nbsp;<spam id="text">Aluno</spam></h3>
     <div id="aluno">
         <%= render partial: "/public/form_aluno" %>
     </div>
@@ -15,10 +20,19 @@
     const btnAluno = document.querySelector("#btnAluno")
     const btnProfessor = document.querySelector("#btnProfessor")
     const aluno = document.querySelector("#aluno")
+    const texto = document.querySelector("#text")
     const professor = document.querySelector("#professor")
+    const formularioP = document.querySelector('#formP');
+    const formularioA = document.querySelector('#formA');
     btnAluno.addEventListener("click",()=>{
         if (!(btnAluno.classList[0] == "selecionada")){
-            aluno.style.display = "flex"
+            formularioP.reset();
+            aluno.style.display = "block"
+            texto.innerText = " Aluno"
+            btnProfessor.style.background = "#ABABAB"
+            btnProfessor.style.zIndex = "-1"
+            btnAluno.style.background = "#d9d9d9"
+            btnAluno.style.zIndex = "2"
             btnAluno.classList.toggle("selecionada")
             professor.style.display = "none"
             btnProfessor.classList.toggle("selecionada")
@@ -26,9 +40,15 @@
     })
     btnProfessor.addEventListener("click",()=>{
         if  (!(btnProfessor.classList[0] == "selecionada")){
+            formularioA.reset();
+            texto.innerText = " Professor"
             aluno.style.display = "none"
+            btnProfessor.style.background = "#d9d9d9"
+            btnProfessor.style.zIndex = "2"
+            btnAluno.style.background = "#ABABAB"
+            btnAluno.style.zIndex = "-1"
             btnAluno.classList.toggle("selecionada")
-            professor.style.display = "flex"
+            professor.style.display = "block"
             btnProfessor.classList.toggle("selecionada")
         }
         

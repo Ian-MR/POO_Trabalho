@@ -3,11 +3,15 @@
 <div class="alunos-wrapper">
   <% @alunos.each do |aluno| %>
     <div class="aluno-wrapper">
-      <h2 class="titulo-aluno"><%= aluno.usuario.nome %></h2>
+      <div class="aluno-info-wrapper">
+        <h2 class="titulo-aluno"><%= aluno.usuario.nome %></h2>
+        <h3 class="matricula-aluno">(<%= aluno.usuario.matricula %>)</h3>
+      </div> 
       <div class="hora"> Horas ACE I: <%= aluno.horas_I %>h</div>  
       <div class="hora"> Horas ACE II: <%= aluno.horas_II %>h</div>  
       <div class="hora"> Horas ACE III: <%= aluno.horas_III %>h</div>  
       <div class="hora"> Horas ACE IV: <%= aluno.horas_IV %>h</div>  
+      <div class="hora"> Total Horas: <%=aluno.horas_I+aluno.horas_II+ aluno.horas_III+aluno.horas_IV%>h</div>  
     </div>
   <%end%>
 </div>

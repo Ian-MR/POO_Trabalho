@@ -9,7 +9,6 @@ class CadastroController < ApplicationController
             @aluno = Aluno.new(params_aluno)
             @usuario = @aluno.build_usuario(params_usuario)
             @usuario.userable = @aluno
-            #@usuario = Usuario.new(params_usuario.merge({userable: @aluno}))
             if @usuario.save && @aluno.save
                 session[:usuario_id] = @aluno.usuario.id
                 redirect_to root_path

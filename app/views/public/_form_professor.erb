@@ -1,40 +1,34 @@
 <%@professor = Professor.new%>
         <%@professor.usuario = Usuario.new%>
-        <%= form_with model: @professor, url: "/sign_up/professor" do |form_professor| %>
+        <%= form_with model: @professor, url: "/sign_up/professor",id:"formP" do |form_professor| %>
         <%= fields_for :usuario do |form_usuario| %>
-                <div>
-                    <%= form_usuario.label :nome %><br>
-                    <%= form_usuario.text_field :nome %>
+                <div class="wrapper">
+                    <%= form_usuario.text_field :nome , class:"text-input", placeholder:"Nome Completo"%>
                 </div>
         
-                <div>
-                    <%= form_usuario.label :email %><br>
-                    <%= form_usuario.text_field :email %>
+                <div class="wrapper">
+                    <%= form_usuario.text_field :email , class:"text-input", placeholder:"E-mail"%>
                 </div>
         
-                <div>
-                    <%= form_usuario.label :matricula %><br>
-                    <%= form_usuario.text_field :matricula %>
+                <div class="wrapper">
+                    <%= form_usuario.text_field :matricula, class:"text-input", placeholder:"Matricula" %>
                 </div>
         
-                <div>
-                    <%= form_usuario.label :telefone %><br>
-                    <%= form_usuario.text_field :telefone %>
+                <div class="wrapper">
+                    <%= form_usuario.text_field :telefone, class:"text-input", placeholder:"Telefone" %>
                 </div>
         
-                <div>
-                    <%= form_usuario.label :password ,"Senha"%><br>
-                    <%= form_usuario.password_field :password %>
+                <div class="wrapper">
+                    <%= form_usuario.password_field :password, class:"text-input", placeholder:"Senha" %>
                 </div>
-                <div>
-                    <%= form_usuario.label :password_confirmation ,"Confirmação da Senha"%><br>
-                    <%= form_usuario.password_field :password_confirmation %>
+                <div class="wrapper">
+                    <%= form_usuario.password_field :password_confirmation, class:"text-input", placeholder:"Confirmação da senha" %>
                 </div>
             <% end %>
-            <div>
-                <%= form_professor.label :centro %><br>
-                <%= form_professor.text_field :centro %>
+            <div class="wrapper">
+                <%= form_professor.text_field :centro, class:"text-input", placeholder:"Centro"%>
             </div>
-            <br>
-            <%= form_professor.submit "Cadastrar" %>
+            <div class="wrapper">
+                <%= form_professor.submit "Cadastrar", id: "btnCadastrar" %>
+            </div>
         <% end %>

@@ -33,18 +33,6 @@ body {
     display: none;
 }
 
-.selecionada{
-    font-size: 27px;
-    font-style: bold;
-}
-
-#btnAluno{
-    cursor: pointer;
-}
-#btnProfessor{
-    cursor: pointer;
-}
-
 #titulo-home {
     margin-top: 95px;
     color: #000;
@@ -69,12 +57,21 @@ body {
     line-height: normal;
     margin-right: 20px;
 }
+
+.matricula-aluno {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
 .titulo-hora {
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-right: 20px;
+
 }
 
 .hora {
@@ -222,8 +219,16 @@ body {
     justify-content: space-between;
 }
 
+.aluno-info-wrapper{
+    font-weight: bold;
+    width: auto;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
 .aluno-wrapper {
     display: flex;
+    justify-content: space-around;
     align-items: center;
     color: #000;
     padding: 34px 48px;
